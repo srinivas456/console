@@ -1,0 +1,18 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: console_development
+  username: postgresuser
+  password: macro129
+  pool: 5
+  timeout: 5000
+  
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: console_test
+  username: postgresuser
+  password: macro129
+  pool: 5
+  timeout: 5000
