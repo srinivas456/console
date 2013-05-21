@@ -41,3 +41,6 @@ gem "bson_ext", "~> 1.8.5"
 
 # To use debugger
 # gem 'debugger'
+
+#Views
+gem "simple_form"
