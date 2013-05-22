@@ -44,3 +44,9 @@ gem "bson_ext", "~> 1.8.5"
 
 #Views
 gem "simple_form"
+
+#Authentication
+gem 'devise'
+
+#gmaps
+gem 'gmaps4rails'
