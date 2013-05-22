@@ -1,10 +1,85 @@
-<%= simple_form_for @project do |f| %>
-  <%= f.input :ProjectName %>
-  <%= f.input :version %>
-  <%= f.input :Title, :label => 'Application Name' %>
-  <%= f.input :devicetype, :label => 'Target Device', :collection => ["Phone", "Tablet", "Both"], :set_default => 'Phone' %>
-  <%= f.input :viewtype, :label => '', :collection => ["Navi-Based","Tab-Based","View-Based"], :as => :radio, :set_default => "Navi-Based" %>
-  <%= f.submit %>
+ 
+<h1>Click the icon for creating New project</h1>
+<div class="ContentsForm">
+
+  <a href="#" id = "opener" > <img src="/assets/sky1.jpg"  width="100" height="100">Create New Project</a>
+	<br />
+</div>
+
+
+
+<h1>Listing Project Managers</h1> 
+  
+ <div id="dialog" title="Basic dialog">
+
+     <h2 class="Title4">Create an App from Scratch</h2>
+    <%= simple_form_for @project do |f| %>
+    <%= f.input :ProjectName %></br>
+  	<%= f.input :version %></br>
+  	<%= f.input :Title, :label => 'Application Name' %></br>
+  	<%= f.input :devisetype, :label => 'Target Device', :collection => ["Phone", "Tablet", "Both"], :set_default => 'Phone' %></br>
+ 	 <%= f.input :viewtype, :label => '', :collection => ["Navi-Based","Tab-Based","View-Based"], :as => :radio, :set_default => "Navi-Based" %></br>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  </div>
+  <% end %>
+ 
+
+</div>
+
+<div>
+  <table>
+ <% @projects.each do |t| %>
+<tr>
+  <th> project name </th>
+  <th> version </th>
+  <th> Title </th>
+  <th>viewtype</th>
+</tr>
+<tr>
+<td>
+   <a href="#" id = "opener" > <img src="/assets/sky.jpg"  width="100" height="100"></a>
+
+   <h1 class="icon"> <td><%= t.ProjectName %></td></h1>
+   <h1 class="icon"> <td><%= t.version %></td></h1>
+   <h1 class="icon"> <td><%= t.Title %></td></h1>
+   <h1 class="icon"> <td><%= t.devisetype %></td></h1>
+   <h1 class="icon"> <td><%= t.viewtype %></td></h1>
+</td>
+</tr>
+  
 <% end %>
+</table>
+
+
+
+ <script>
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      height: 500,
+      width: 550,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  });
+  </script>
+ 
+
+
+
+
 
 
