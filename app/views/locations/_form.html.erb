@@ -28,5 +28,29 @@
 <% end %>
 
 <%= gmaps("map_options" => {"auto_adjust" => true},
-          "markers" => {"data" => @json, "options" => {"list_container" => "markers_list","randomize" => true,"max_random_distance" => 10000 } }) %>
+          "markers" => {"data" => @json, "options" => {"list_container" => "markers_list","randomize" => true,"max_random_distance" => 10000, "draggable" => true } }) %>
+
+
+          <%#= gmaps(“markers” => {“data” => @json, “options” => {“draggable” => true}}, “map_options” => { “type” => “HYBRID”, “center_on_user” => true, “processing” => “json”, “auto_zoom” => false, “zoom” => 30, “auto_adjust” => true, “detect_location” => true}) %>
 <ul id="markers_list">  </ul>
+
+<script type="text/javascript">
+Gmaps.map.HandleDragend = function(pos) {
+var geocoder = new google.maps.Geocoder();
+geocoder.geocode({
+latLng: pos
+}, function(responses) {
+if (responses && responses.length > 0) {
+alert(“You current co-ordinate is ” + pos);
+} else {
+alert(‘Cannot determine address at this location.’);
+}
+});
+};
+
+Gmaps.map.callback = function() {
+for (var i = 0; i <  this.markers.length; ++i) {
+google.maps.event.addListener(Gmaps.map.markers[i].serviceObject, ‘dragend’, function() { Gmaps.map.HandleDragend(this.getPosition()) });
+}
+};
+</script>
